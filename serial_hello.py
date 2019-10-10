@@ -9,7 +9,6 @@ import sys, getopt
 
 ## Change this to match your local settings
 SERIAL_PORT = '/dev/cu.usbmodem00001'
-#SERIAL_PORT = '/dev/tty.usbmodem1421'
 SERIAL_BAUDRATE = 9600
 
 
