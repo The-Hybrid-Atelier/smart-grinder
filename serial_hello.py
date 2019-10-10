@@ -8,6 +8,7 @@ import atexit
 import sys, getopt
 
 ## Change this to match your local settings
+# HELLO
 SERIAL_PORT = '/dev/cu.usbmodem00001'
 SERIAL_BAUDRATE = 9600
 
