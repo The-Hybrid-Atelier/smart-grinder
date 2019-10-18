@@ -8,8 +8,8 @@ unsigned int sample;
 
 void setup() 
 {
-   Serial.begin(9600);
-   Serial.println ("s:mich V1");
+   Serial.begin(115200);
+   Serial.println ("s:Microphone Grinder V2 @ 115200");
    pinMode(A0, INPUT);
 }
 
