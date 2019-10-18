@@ -7,8 +7,7 @@ import queue
 import atexit
 import sys, getopt
 
-## Change this to match your local settings
-# HELLO
+
 SERIAL_PORT = '/dev/cu.usbmodem00001'
 SERIAL_BAUDRATE = 9600
 
@@ -22,7 +21,6 @@ class SerialProcess():
             self.sp = serial.Serial(SERIAL_PORT, SERIAL_BAUDRATE, timeout=1)
             print ("SUCCESS: Arduino was found!")
         except Exception as e:
-            # raise e
             self.sp = None
             print ("ERROR: Arduino is not attached! Check to make sure the USB for the door alarm is connected to the BiD computer.")
     def opened(self):
@@ -34,11 +32,9 @@ class SerialProcess():
     def writeSerial(self, data):
         if self.sp:
             self.sp.write(data)
-        # time.sleep(1)
 
     def readSerial(self):
         if self.sp:
-            # return self.sp.readline().replace("\n", "")
             msg= self.sp.readline().decode('utf-8')
             # Extracting flag from the message
             arr= msg.split (":")
@@ -60,7 +56,6 @@ class SerialProcess():
             else:
                 return None
 
-            # return decipher_message(self.sp.readline())
 
     def run(self):
         if self.sp:
@@ -83,11 +78,11 @@ class SerialProcess():
                         self.output_queue.put(data)
                         self.f.write(str(data) + "\n")
 
+# Write data into the file for each User
 def writeToFile(userID):
     try:
-
+# timestamp
         f = open(str(userID) + ".txt","w+")
-
         now = datetime.now()
         timestamp = datetime.timestamp(now)
 
@@ -99,12 +94,10 @@ def writeToFile(userID):
     except KeyboardInterrupt:
         f.close()
         print ("FILE HAS CLOSED")
-        # raise
 
 # Read what was specified with -u
 def main(argv):
    user = ''
-
    opts, args = getopt.getopt(argv,"u:",["user="])
    for opt, arg in opts:
       if opt in ("-u", "--user"):
